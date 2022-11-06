@@ -1,4 +1,4 @@
-FROM php:8.1.0-fpm 
+FROM php:7.4.0-fpm 
 ##change php version TBD
 
 #xdebug profiler directory
@@ -41,21 +41,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN pecl install apcu \
     && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini
 
-ENV NEW_RELIC_KEY=${NEW_RELIC_KEY}
-ENV NEW_RELIC_NAME=${NEW_RELIC_NAME}
-
-#install new relic
-RUN \
-  curl -L https://download.newrelic.com/php_agent/archive/9.16.0.295/newrelic-php5-9.16.0.295-linux.tar.gz | tar -C /tmp -zx && \
-  export NR_INSTALL_USE_CP_NOT_LN=1 && \
-  export NR_INSTALL_SILENT=1 && \
-  /tmp/newrelic-php5-*/newrelic-install install && \
-  rm -rf /tmp/newrelic-php5- /tmp/nrinstall && \
-  sed -i \
-      -e 's/"REPLACE_WITH_REAL_KEY"/"${NEW_RELIC_KEY}"/' \
-      -e 's/newrelic.appname = "PHP Application"/newrelic.appname = "${NEW_RELIC_NAME}"/' \
-      -e 's/;newrelic.daemon.app_connect_timeout =.*/newrelic.daemon.app_connect_timeout=15s/' \
-      -e 's/;newrelic.daemon.start_timeout =.*/newrelic.daemon.start_timeout=5s/' \
-      /usr/local/etc/php/conf.d/newrelic.ini
 
 WORKDIR /server/http

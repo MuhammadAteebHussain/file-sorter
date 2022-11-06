@@ -15,9 +15,9 @@ use Psr\Log\LoggerInterface;
 class ShortCodeSortingApplicationService implements ApplicationServiceInterface
 {
 
-    protected $sorting_service;
-    protected $file_service;
-    protected $logger;
+    protected SortingInterface $sorting_service;
+    protected FileInterface $file_service;
+    protected LoggerInterface $logger;
 
 
     /**

@@ -7,7 +7,7 @@ File Sorter is a tool that takes the input of a .properties file and then create
 Use the below link for cloning.
 
 ```bash
-git clone https://github.com/MuhammadAteebHussain/trans_ip_symfony.git
+git clone https://github.com/MuhammadAteebHussain/file-sorter.git
 ```
 
 ## Installation
