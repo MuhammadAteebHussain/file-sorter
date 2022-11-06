@@ -41,16 +41,11 @@ composer dumpautload -o
 docker-compose ps -a
 ```
 ## Running Project
--  After setting all please up your listeners
-```bash
-php bin/console  app:create-file
-app:create-hash-listen
-```
 
 ##
 - RUN Unit tests
 ```bash
-php bin/phpunit
+php vendor/bin/phpunit
 ```
 ##
 - For Generating Sorted File
