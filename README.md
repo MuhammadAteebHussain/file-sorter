@@ -2,7 +2,7 @@
 
 File Sorter is a tool that takes the input of a .properties file and then creates another file with sorted file keys in alphabetical order including comments. By default, it is taking input file config/short_codes.properties and then stores the file in the directory config with a new name. you can configure the name by .env file. The tool is dockerized and very easy to set up. just follow the below steps for setting up the project.
 
-## Clone project
+## Clone Project
 
 Use the below link for cloning.
 
@@ -41,16 +41,11 @@ composer dumpautload -o
 docker-compose ps -a
 ```
 ## Running Project
--  After setting all please up your listeners
-```bash
-php bin/console  app:create-file
-app:create-hash-listen
-```
 
 ##
 - RUN Unit tests
 ```bash
-php bin/phpunit
+php vendor/bin/phpunit
 ```
 ##
 - For Generating Sorted File
