@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  nginx:
+    container_name: ${NGINX_CONTAINER}
+    image: nginx:${NGINX_VERSION}
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./:/server/http
+    ports:
+      - 9084:80
+      - 9043:443
+    networks:
+      - php-translator-coding-backend
+    links:
+      - php
+  php:
+    container_name: ${PHP_CONTAINER}
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./:/server/http
+      - ./var/cache/xdebug:/tmp
+      - /home/ateeb/.ssh/:/root/.ssh
+    ports:
+      - 9001:9000
+    networks:
+      - php-translator-coding-backend
+networks:
+  php-translator-coding-backend:
+    name: php-translator-coding-backend
+    driver: bridge
+
+volumes:
+  db-mysql-volume:
+
